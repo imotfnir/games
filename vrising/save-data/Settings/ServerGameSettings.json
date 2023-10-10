@@ -1,6 +1,6 @@
 ﻿{
-  "GameModeType": "PvP",
-  "CastleDamageMode": "Always",
+  "GameModeType": "PvE",
+  "CastleDamageMode": "Never",
   "SiegeWeaponHealth": "Normal",
   "PlayerDamageMode": "Always",
   "CastleHeartDamageMode": "CanBeDestroyedByPlayers",
@@ -9,7 +9,7 @@
   "RelicSpawnType": "Unique",
   "CanLootEnemyContainers": true,
   "BloodBoundEquipment": true,
-  "TeleportBoundItems": true,
+  "TeleportBoundItems": false,
   "AllowGlobalChat": true,
   "AllWaypointsUnlocked": false,
   "FreeCastleClaim": false,
@@ -21,7 +21,7 @@
   "InactivityKillTimerMaxItemLevel": 84,
   "DisableDisconnectedDeadEnabled": true,
   "DisableDisconnectedDeadTimer": 60,
-  "InventoryStacksModifier": 1.0,
+  "InventoryStacksModifier": 10.0,
   "DropTableModifier_General": 1.0,
   "DropTableModifier_Missions": 1.0,
   "MaterialYieldModifier_Global": 1.0,
@@ -47,10 +47,10 @@
   "CraftRateModifier": 1.0,
   "ResearchCostModifier": 1.0,
   "RefinementCostModifier": 1.0,
-  "RefinementRateModifier": 1.0,
+  "RefinementRateModifier": 2.0,
   "ResearchTimeModifier": 1.0,
   "DismantleResourceModifier": 1.0,
-  "ServantConvertRateModifier": 1.0,
+  "ServantConvertRateModifier": 10.0,
   "RepairCostModifier": 1.0,
   "Death_DurabilityFactorLoss": 0.125,
   "Death_DurabilityLossFactorAsResources": 1.0,
@@ -74,7 +74,7 @@
     "MaxEnergyModifier": 1.0,
     "PhysicalPowerModifier": 1.0,
     "SpellPowerModifier": 1.0,
-    "ResourcePowerModifier": 1.0,
+    "ResourcePowerModifier": 10.0,
     "SiegePowerModifier": 1.0,
     "DamageReceivedModifier": 1.0,
     "ReviveCancelDelay": 5.0
@@ -84,22 +84,22 @@
     "PowerModifier": 1.0
   },
   "UnitStatModifiers_VBlood": {
-    "MaxHealthModifier": 1.0,
-    "PowerModifier": 1.0
+    "MaxHealthModifier": 3.0,
+    "PowerModifier": 2.0
   },
   "EquipmentStatModifiers_Global": {
     "MaxEnergyModifier": 1.0,
     "MaxHealthModifier": 1.0,
-    "ResourceYieldModifier": 1.0,
+    "ResourceYieldModifier": 2.0,
     "PhysicalPowerModifier": 1.0,
     "SpellPowerModifier": 1.0,
     "SiegePowerModifier": 1.0,
-    "MovementSpeedModifier": 1.0
+    "MovementSpeedModifier": 1.3
   },
   "CastleStatModifiers_Global": {
     "TickPeriod": 5.0,
     "DamageResistance": 0.0,
-    "SafetyBoxLimit": 1,
+    "SafetyBoxLimit": 3,
     "TombLimit": 12,
     "VerminNestLimit": 4,
     "PrisonCellLimit": 16,
@@ -160,31 +160,31 @@
     "HeartLimits": {
       "Level1": {
         "Level": 1,
-        "FloorLimit": 40,
-        "ServantLimit": 4
+        "FloorLimit": 80,
+        "ServantLimit": 6
       },
       "Level2": {
         "Level": 2,
-        "FloorLimit": 100,
-        "ServantLimit": 5
+        "FloorLimit": 200,
+        "ServantLimit": 13
       },
       "Level3": {
         "Level": 3,
-        "FloorLimit": 180,
-        "ServantLimit": 6
+        "FloorLimit": 360,
+        "ServantLimit": 25
       },
       "Level4": {
         "Level": 4,
-        "FloorLimit": 260,
-        "ServantLimit": 7
+        "FloorLimit": 520,
+        "ServantLimit": 50
       },
       "Level5": {
         "Level": 5,
-        "FloorLimit": 420,
-        "ServantLimit": 8
+        "FloorLimit": 840,
+        "ServantLimit": 100
       }
     },
-    "CastleLimit": 2
+    "CastleLimit": 50
   },
   "PlayerInteractionSettings": {
     "TimeZone": "Local",
