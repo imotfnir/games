@@ -13,7 +13,7 @@
   "ListOnEOS": false,
   "AutoSaveCount": 20,
   "AutoSaveInterval": 600,
-  "CompressSaveFiles": false,
+  "CompressSaveFiles": true,
   "GameSettingsPreset": "",
   "AdminOnlyDebugEvents": true,
   "DisableDebugEvents": false,
