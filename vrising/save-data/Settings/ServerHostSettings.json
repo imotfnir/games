@@ -5,20 +5,20 @@
   "QueryPort": 9877,
   "MaxConnectedUsers": 4,
   "MaxConnectedAdmins": 4,
-  "ServerFps": 60,
+  "ServerFps": 120,
   "SaveName": "world1",
   "Password": "",
   "Secure": true,
   "ListOnSteam": true,
-  "ListOnEOS": false,
+  "ListOnEOS": true,
   "AutoSaveCount": 20,
-  "AutoSaveInterval": 600,
+  "AutoSaveInterval": 900,
   "CompressSaveFiles": true,
   "GameSettingsPreset": "",
   "AdminOnlyDebugEvents": true,
   "DisableDebugEvents": false,
   "API": {
-    "Enabled": false
+    "Enabled": true
   },
   "Rcon": {
     "Enabled": false,
