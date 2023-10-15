@@ -100,8 +100,8 @@
     "TickPeriod": 5.0,
     "DamageResistance": 0.0,
     "SafetyBoxLimit": 3,
-    "TombLimit": 12,
-    "VerminNestLimit": 4,
+    "TombLimit":20,
+    "VerminNestLimit": 20,
     "PrisonCellLimit": 16,
     "PylonPenalties": {
       "Range1": {
@@ -161,27 +161,27 @@
       "Level1": {
         "Level": 1,
         "FloorLimit": 80,
-        "ServantLimit": 6
+        "ServantLimit": 25
       },
       "Level2": {
         "Level": 2,
         "FloorLimit": 200,
-        "ServantLimit": 13
+        "ServantLimit": 50
       },
       "Level3": {
         "Level": 3,
         "FloorLimit": 360,
-        "ServantLimit": 25
+        "ServantLimit": 75
       },
       "Level4": {
         "Level": 4,
         "FloorLimit": 520,
-        "ServantLimit": 50
+        "ServantLimit": 100
       },
       "Level5": {
         "Level": 5,
         "FloorLimit": 840,
-        "ServantLimit": 100
+        "ServantLimit": 150
       }
     },
     "CastleLimit": 50

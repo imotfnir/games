@@ -12,7 +12,7 @@
   "ListOnSteam": true,
   "ListOnEOS": true,
   "AutoSaveCount": 20,
-  "AutoSaveInterval": 900,
+  "AutoSaveInterval": 120,
   "CompressSaveFiles": true,
   "GameSettingsPreset": "",
   "AdminOnlyDebugEvents": true,
