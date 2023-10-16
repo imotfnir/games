@@ -30,8 +30,8 @@
   "PvPVampireRespawnModifier": 1.0,
   "CastleMinimumDistanceInFloors": 2,
   "ClanSize": 4,
-  "BloodDrainModifier": 1.0,
-  "DurabilityDrainModifier": 1.0,
+  "BloodDrainModifier": 0.0,
+  "DurabilityDrainModifier": 0.2,
   "GarlicAreaStrengthModifier": 1.0,
   "HolyAreaStrengthModifier": 1.0,
   "SilverStrengthModifier": 1.0,
@@ -65,8 +65,8 @@
     "DayStartMinute": 0,
     "DayEndHour": 17,
     "DayEndMinute": 0,
-    "BloodMoonFrequency_Min": 10,
-    "BloodMoonFrequency_Max": 18,
+    "BloodMoonFrequency_Min": 18,
+    "BloodMoonFrequency_Max": 50,
     "BloodMoonBuff": 0.2
   },
   "VampireStatModifiers": {
@@ -80,8 +80,8 @@
     "ReviveCancelDelay": 5.0
   },
   "UnitStatModifiers_Global": {
-    "MaxHealthModifier": 1.0,
-    "PowerModifier": 1.0
+    "MaxHealthModifier": 1.25,
+    "PowerModifier": 1.25
   },
   "UnitStatModifiers_VBlood": {
     "MaxHealthModifier": 3.0,
