@@ -5,7 +5,7 @@
   "QueryPort": 9877,
   "MaxConnectedUsers": 4,
   "MaxConnectedAdmins": 4,
-  "ServerFps": 120,
+  "ServerFps": 45,
   "SaveName": "world1",
   "Password": "",
   "Secure": true,
