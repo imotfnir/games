@@ -6,7 +6,7 @@
   "CastleHeartDamageMode": "CanBeDestroyedByPlayers",
   "PvPProtectionMode": "Medium",
   "DeathContainerPermission": "Anyone",
-  "RelicSpawnType": "Unique",
+  "RelicSpawnType": "Plentiful",
   "CanLootEnemyContainers": true,
   "BloodBoundEquipment": true,
   "TeleportBoundItems": false,
@@ -67,17 +67,17 @@
     "DayEndMinute": 0,
     "BloodMoonFrequency_Min": 2,
     "BloodMoonFrequency_Max": 4,
-    "BloodMoonBuff": 0.4
+    "BloodMoonBuff": 0.5
   },
   "VampireStatModifiers": {
-    "MaxHealthModifier": 3.0,
-    "MaxEnergyModifier": 2.0,
+    "MaxHealthModifier": 1.0,
+    "MaxEnergyModifier": 1.0,
     "PhysicalPowerModifier": 1.0,
     "SpellPowerModifier": 3.0,
     "ResourcePowerModifier": 10.0,
     "SiegePowerModifier": 1.0,
     "DamageReceivedModifier": 1.0,
-    "ReviveCancelDelay": 5.0
+    "ReviveCancelDelay": 0.0
   },
   "UnitStatModifiers_Global": {
     "MaxHealthModifier": 1.25,
@@ -91,10 +91,10 @@
     "MaxEnergyModifier": 1.0,
     "MaxHealthModifier": 1.0,
     "ResourceYieldModifier": 2.5,
-    "PhysicalPowerModifier": 1.0,
-    "SpellPowerModifier": 1.0,
-    "SiegePowerModifier": 1.0,
-    "MovementSpeedModifier": 1.4
+    "PhysicalPowerModifier": 1.2,
+    "SpellPowerModifier": 1.2,
+    "SiegePowerModifier": 2.0,
+    "MovementSpeedModifier": 1.5
   },
   "CastleStatModifiers_Global": {
     "TickPeriod": 5.0,
