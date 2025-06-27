@@ -1,8 +1,2 @@
-*
-!*/
-!.gitignore
-!vrising/save-data/**
-!palworld/Pal/Saved/SaveGames/**
-!palworld/docker-compose.yml
-!palworld/.env
+palworld/.envpy
 

@@ -9,6 +9,6 @@ services:
         - 27015:27015/udp
         - 8212:8212/tcp  # Port for REST API if REST_API_ENABLED: true
       env_file:
-        - .env
+        - docker-compose.env
       volumes:
         - /home/imotfnir/nas/games/palworld:/palworld/
