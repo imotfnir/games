@@ -1,14 +1,31 @@
 services:
-   palworld:
-      image: thijsvanloef/palworld-server-docker:latest
-      restart: unless-stopped
-      container_name: palworld-server
-      stop_grace_period: 30s # Set to however long you are willing to wait for the container to gracefully stop
-      ports:
-        - 8211:8211/udp
-        - 27015:27015/udp
-        - 8212:8212/tcp  # Port for REST API if REST_API_ENABLED: true
-      env_file:
-        - docker-compose.env
-      volumes:
-        - /home/imotfnir/nas/games/palworld:/palworld/
+  palworld:
+    image: thijsvanloef/palworld-server-docker:latest
+    restart: unless-stopped
+    container_name: palworld-server
+    stop_grace_period: 30s # Set to however long you are willing to wait for the container to gracefully stop
+    ports:
+      - 8211:8211/udp
+      - 27015:27015/udp
+      - 8212:8212/tcp  # Port for REST API if REST_API_ENABLED: true
+    env_file:
+      - docker-compose.env
+    volumes:
+      - /home/imotfnir/nas/games/palworld:/palworld/
+    networks:
+      - palworld_server_network
+  discord-bot:
+    build:
+      context: . # Dockerfile location
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    container_name: palworld-discord-bot
+    env_file:
+      - docker-compose.env
+    networks:
+      - palworld_server_network
+    depends_on:
+      - palworld
+networks:
+  palworld_server_network:
+    driver: bridge

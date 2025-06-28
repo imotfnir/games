@@ -3,6 +3,7 @@ import os
 import base64
 import io
 import aiohttp
+import traceback
 from typing import Optional
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -104,7 +105,7 @@ async def get_server(interaction: discord.Interaction, opt: Optional[str] = None
         "Accept": "application/json",
         "Authorization": f"Basic {encoded_auth_string}",
     }
-
+    print(url)
     try:
         async with aiohttp.ClientSession(headers=headers) as session:
             async with session.get(url) as response:
@@ -136,9 +137,19 @@ async def get_server(interaction: discord.Interaction, opt: Optional[str] = None
                     await interaction.followup.send(embed=embed)
 
     except Exception as e:
-        await interaction.followup.send(
-            f"❌ **請求過程中發生嚴重錯誤**：\n`{type(e).__name__}`: `{e}`"
+                # 在後台終端機印出完整的錯誤追蹤，方便開發者除錯
+        print(f"錯誤：在請求 URL '{url}' 時發生例外狀況。")
+        traceback.print_exc()
+
+        # 在 Discord 中回傳更詳細的錯誤訊息給使用者
+        error_message = (
+            f"❌ **請求過程中發生嚴重錯誤**\n\n"
+            f"**錯誤類型:** `{type(e).__name__}`\n"
+            f"**錯誤訊息:** `{e}`\n"
+            f"**請求的 URL:** `{url}`"
         )
+        await interaction.followup.send(error_message)
+
 
 
 bot.run(TOKEN)
