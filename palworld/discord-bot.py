@@ -1,8 +1,9 @@
 import discord
 import os
-import json
+import base64
 import io
 import aiohttp
+from typing import Optional
 from dotenv import load_dotenv
 from discord.ext import commands
 from discord import app_commands
@@ -10,7 +11,9 @@ from discord import app_commands
 # 載入 .env 檔案中的環境變數
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
-REST_API = os.getenv("PALWORLD_API_BASE_URL")
+SERVER_URL = os.getenv("PALWORLD_API_BASE_URL")
+SERVER_ACCOUNT = os.getenv("PALWORLD_ADMIN_ACCOUNT")
+SERVER_PASSWORD = os.getenv("PALWORLD_ADMIN_PASSWORD")
 
 # 檢查 TOKEN 是否成功載入
 if TOKEN is None:
@@ -31,20 +34,19 @@ async def on_ready():
     print(f"載入 {len(slash)} 個斜線指令")
 
 
-@bot.tree.command(name="hello", description="Hello, world!")
-async def hello(interaction: discord.Interaction):
-    await interaction.response.send_message("Hello, world!")
-
-
-# @bot.tree.command(name="ping", description="測試Bot回應速度")
-# async def ping(ctx: app_commands.AppCommandContext):
-#     await ctx.respond("Pong!")
+@bot.tree.command(name="help", description="Bot求助")
+async def help(interaction: discord.Interaction):
+    """
+    求助指令
+    """
+    str = """get-server: 參考 https://docs.palworldgame.com/category/rest-api 有支援的指令"""
+    await interaction.response.send_message(str)
 
 
 @bot.tree.command(name="ping", description="測試Bot回應速度")
 async def ping(interaction: discord.Interaction):
     """
-    This text will be shown in the help command
+    測試Bot延遲：回傳延遲值，單位秒
     """
     # Get the latency of the bot
     latency = bot.latency  # Included in the Discord.py library
@@ -52,16 +54,55 @@ async def ping(interaction: discord.Interaction):
     await interaction.response.send_message(latency)
 
 
-@bot.tree.command(name="get-server-info", description="查詢伺服器資訊")
-async def get_server_info(interaction: discord.Interaction):
+async def get_server_autocomplete(
+    interaction: discord.Interaction,
+    current: str,
+) -> list[app_commands.Choice[str]]:
+    """為 fetch_data 指令的 extra_param 提供自動完成選項。"""
+    # 定義可用的選項與其說明
+    choices = {
+        "info": "info 獲取伺服器基本資訊 (名稱、版本)",
+        "players": "players 獲取目前的線上玩家列表",
+        "settings": "settings 獲取重要的世界設定",
+        "metrics": "metrics 獲取伺服器性能、運行指標",
+    }
 
+    # 根據使用者輸入的內容，篩選出符合的選項
+    filtered_choices = []
+    for value, name in choices.items():
+        if current.lower() in value.lower() or current.lower() in name.lower():
+            filtered_choices.append(app_commands.Choice(name=name, value=value))
+
+    # Discord 最多只能顯示 25 個選項
+    return filtered_choices[:25]
+
+
+@bot.tree.command(name="get-server", description="查詢伺服器資訊")
+@app_commands.autocomplete(
+    opt=get_server_autocomplete
+)  # 關鍵：將 autocomplete 函式綁定到參數上
+@app_commands.describe(opt="選擇你想獲取的資料類型")
+async def get_server(interaction: discord.Interaction, opt: Optional[str] = None):
     await interaction.response.defer()
+    # 根據 extra_param 動態決定 API 的路徑
 
-    url = f"{REST_API}/v1/api/info"
-    # payload = {}
+    endpoint = "info"
+    if opt == "players":
+        endpoint = "players"
+    elif opt == "settings":
+        endpoint = "settings"
+    elif opt == "metrics":
+        endpoint = "metrics"
+
+    url = f"{SERVER_URL}/v1/api/{endpoint}"
+
+    auth_string = f"{SERVER_ACCOUNT}:{SERVER_PASSWORD}"
+    encoded_auth_bytes = base64.b64encode(auth_string.encode("utf-8"))
+    encoded_auth_string = encoded_auth_bytes.decode("utf-8")
+
     headers = {
         "Accept": "application/json",
-        "Authorization": "Basic YWRtaW46ZzhvbjA3OQ==",
+        "Authorization": f"Basic {encoded_auth_string}",
     }
 
     try:
@@ -95,7 +136,7 @@ async def get_server_info(interaction: discord.Interaction):
                     await interaction.followup.send(embed=embed)
 
     except Exception as e:
-        await ctx.followup.send(
+        await interaction.followup.send(
             f"❌ **請求過程中發生嚴重錯誤**：\n`{type(e).__name__}`: `{e}`"
         )
 
