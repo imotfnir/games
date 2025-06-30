@@ -3,7 +3,7 @@ import os
 import base64
 import io
 import aiohttp
-import traceback
+import traceback  # 匯入 traceback 模組以取得完整的錯誤追蹤
 from typing import Optional
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -105,7 +105,6 @@ async def get_server(interaction: discord.Interaction, opt: Optional[str] = None
         "Accept": "application/json",
         "Authorization": f"Basic {encoded_auth_string}",
     }
-    print(url)
     try:
         async with aiohttp.ClientSession(headers=headers) as session:
             async with session.get(url) as response:
@@ -115,13 +114,13 @@ async def get_server(interaction: discord.Interaction, opt: Optional[str] = None
                 embed = discord.Embed(
                     title="API 資料擷取",
                     description=f"**Status Code: `{status_code}`**",
-                    url=url,
                     color=(
                         discord.Color.blue()
                         if 200 <= status_code < 300
                         else discord.Color.orange()
                     ),
                 )
+                embed.add_field(name="請求的 URL", value=f"`{url}`", inline=False)
 
                 if response_text:
                     file_content = io.BytesIO(response_text.encode("utf-8"))
@@ -137,7 +136,7 @@ async def get_server(interaction: discord.Interaction, opt: Optional[str] = None
                     await interaction.followup.send(embed=embed)
 
     except Exception as e:
-                # 在後台終端機印出完整的錯誤追蹤，方便開發者除錯
+        # 在後台終端機印出完整的錯誤追蹤，方便開發者除錯
         print(f"錯誤：在請求 URL '{url}' 時發生例外狀況。")
         traceback.print_exc()
 
@@ -149,7 +148,6 @@ async def get_server(interaction: discord.Interaction, opt: Optional[str] = None
             f"**請求的 URL:** `{url}`"
         )
         await interaction.followup.send(error_message)
-
 
 
 bot.run(TOKEN)
