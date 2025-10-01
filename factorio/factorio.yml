@@ -6,7 +6,7 @@ services:
     volumes:
       - ${DATA_DIR}/factorio:/factorio
     env_file:
-      - .env
+      - factorio.env
     container_name: factorio
     restart: unless-stopped
     image: factoriotools/factorio:stable-rootless
