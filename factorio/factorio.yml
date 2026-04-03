@@ -9,5 +9,6 @@ services:
       - factorio.env
     container_name: factorio
     restart: unless-stopped
-    image: factoriotools/factorio:stable-rootless
+    #image: factoriotools/factorio:stable-rootless
+    image: factoriotools/factorio:2.0.72-rootless
 networks: {}
