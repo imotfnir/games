@@ -1,0 +1,16 @@
+services:
+  dst-server:
+     image: jamesits/dst-server:latest
+     restart: "on-failure:5"
+     container_name: dst
+     env_file:
+      - dst.env
+     ports:
+        - "10999-11000:10999-11000/udp"
+        - "12346-12347:12346-12347/udp"
+     volumes:
+        - ${DOCKER_DATA_DIR}/dst:/data
+        - dst_data:/opt/dst_server
+     stop_grace_period: 6m
+volumes:
+  dst_data:
